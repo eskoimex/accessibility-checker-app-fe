@@ -1,0 +1,14 @@
+.App {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+.results {
+  margin-top: 20px;
+}
+
+pre {
+  background: #f4f4f4;
+  padding: 10px;
+  border-radius: 5px;
+}
