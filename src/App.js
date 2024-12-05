@@ -15,7 +15,8 @@ function App() {
     formData.append('file', file);
 
     try {
-      const { data } = await axios.post('http://localhost:5000/upload', formData);
+      // const { data } = await axios.post('http://localhost:5000/upload', formData);
+      const { data } = await axios.post('https://accessibility-checker-app.onrender.com/upload', formData);
       setAnalysis(data);
       const reader = new FileReader();
       reader.onload = () => setHtmlContent(reader.result);
