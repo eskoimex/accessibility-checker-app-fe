@@ -1,4 +1,4 @@
-<html>
+<!-- <html>
   <head></head>
   <body>
     <img src="image.png">
@@ -6,4 +6,84 @@
     <h3>Heading 3</h3>
     <input type="text" id="username">
   </body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Test Page for FileUploadService</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+        .form-section {
+            margin-top: 30px;
+        }
+        .image-section {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Test Page for FileUploadService Analysis</h1>
+        <p>This page contains various accessibility issues for testing the analysis service.</p>
+    </header>
+
+    <section>
+        <!-- Headings Test -->
+        <h2>Heading Level Test</h2>
+        <h3>Subheading 1</h3>
+        <h2>Subheading 2 (Duplicate Level)</h2> <!-- Accessibility issue: heading level mismatch -->
+
+        <h3>Heading with Missing Label</h3>
+    </section>
+
+    <section class="image-section">
+        <!-- Images Test -->
+        <h2>Images Test</h2>
+        <img src="https://via.placeholder.com/300" alt="A placeholder image"> <!-- Accessible image -->
+        <img src="https://via.placeholder.com/300" alt=""> <!-- Missing alt attribute: Accessibility issue -->
+        <img src="https://via.placeholder.com/300" /> <!-- Missing alt attribute: Accessibility issue -->
+    </section>
+
+    <section class="form-section">
+        <!-- Form and Labels Test -->
+        <h2>Form Test</h2>
+        <form>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            
+            <!-- Missing form label issue -->
+            <input type="password" id="password" required>
+            
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+    <section>
+        <!-- Unique ID Test -->
+        <h2>Unique ID Test</h2>
+        <div id="unique-id">Content with unique ID</div>
+        <div id="unique-id">Content with duplicate ID</div> <!-- Duplicate ID: Accessibility issue -->
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Test Page</p>
+    </footer>
+
+</body>
 </html>
