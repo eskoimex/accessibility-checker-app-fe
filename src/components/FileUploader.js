@@ -45,6 +45,7 @@ function FileUploader({
         onChange={onFileChange}
         className="w-full max-w-md border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
       />
+      <p>Upload an HTML file to start analysing.</p>
       {loading && <div className="loader mt-4">Analysing...</div>}
       <button
         onClick={handleUpload}

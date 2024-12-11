@@ -8,12 +8,22 @@ function HtmlPreview({ htmlContent, analysis }) {
     const doc = parser.parseFromString(htmlContent, 'text/html');
 
     analysis.issues.forEach((issue) => {
-      const tempElement = document.createElement('div');
-      tempElement.innerHTML = issue.element;
-      const elementToHighlight = doc.body.querySelector(tempElement.firstChild.tagName);
+      if (!issue.element) return; // Skip if the element selector is not defined
 
-      if (elementToHighlight) {
-        elementToHighlight.classList.add('highlight');
+      try {
+        const tempElement = document.createElement('div');
+        tempElement.innerHTML = issue.element;
+
+        // Use a safer way to find the element by its tag name and attributes
+        const elementToHighlight = doc.querySelector(tempElement.firstElementChild?.tagName);
+
+        if (elementToHighlight) {
+          elementToHighlight.classList.add('highlight');
+        } else {
+          console.warn(`Element not found for issue: ${issue.element}`);
+        }
+      } catch (error) {
+        console.error(`Error processing issue element: ${issue.element}`, error);
       }
     });
 

@@ -10,80 +10,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Test Page for FileUploadService</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            margin: 0;
-            padding: 20px;
-        }
-        h1, h2, h3 {
-            color: #333;
-        }
-        .error {
-            color: red;
-            font-weight: bold;
-        }
-        .form-section {
-            margin-top: 30px;
-        }
-        .image-section {
-            margin-top: 30px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accessibility Test</title>
 </head>
 <body>
+  <h1>Welcome to the Accessibility Test Page</h1>
 
-    <header>
-        <h1>Test Page for FileUploadService Analysis</h1>
-        <p>This page contains various accessibility issues for testing the analysis service.</p>
-    </header>
+  <h2>Main Section</h2>
+  <p>This is a sample page to test the accessibility analysis service.</p>
 
-    <section>
-        <!-- Headings Test -->
-        <h2>Heading Level Test</h2>
-        <h3>Subheading 1</h3>
-        <h2>Subheading 2 (Duplicate Level)</h2> <!-- Accessibility issue: heading level mismatch -->
+  <h3>Form Section</h3>
+  <form>
+    <!-- Valid label -->
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username">
 
-        <h3>Heading with Missing Label</h3>
-    </section>
+    <!-- Missing label -->
+    <input type="password" id="password" name="password" placeholder="Password">
 
-    <section class="image-section">
-        <!-- Images Test -->
-        <h2>Images Test</h2>
-        <img src="https://via.placeholder.com/300" alt="A placeholder image"> <!-- Accessible image -->
-        <img src="https://via.placeholder.com/300" alt=""> <!-- Missing alt attribute: Accessibility issue -->
-        <img src="https://via.placeholder.com/300" /> <!-- Missing alt attribute: Accessibility issue -->
-    </section>
+    <!-- Hidden input (should be skipped) -->
+    <input type="hidden" id="hiddenField" name="hiddenField">
 
-    <section class="form-section">
-        <!-- Form and Labels Test -->
-        <h2>Form Test</h2>
-        <form>
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
-            
-            <!-- Missing form label issue -->
-            <input type="password" id="password" required>
-            
-            <button type="submit">Submit</button>
-        </form>
-    </section>
+    <!-- Select without label -->
+    <select id="selectWithoutLabel">
+      <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+    </select>
 
-    <section>
-        <!-- Unique ID Test -->
-        <h2>Unique ID Test</h2>
-        <div id="unique-id">Content with unique ID</div>
-        <div id="unique-id">Content with duplicate ID</div> <!-- Duplicate ID: Accessibility issue -->
-    </section>
+    <!-- Textarea without label -->
+    <textarea name="comments" id="comments" placeholder="Enter your comments"></textarea>
+  </form>
 
-    <footer>
-        <p>&copy; 2024 Test Page</p>
-    </footer>
+  <h3>Image Section</h3>
+  <!-- Image with alt attribute -->
+  <img src="valid-image.jpg" alt="A valid image description">
+
+  <!-- Image without alt attribute -->
+  <img src="missing-alt.jpg">
+
+  <h3>Duplicate ID Section</h3>
+  <div id="duplicateId">This div has a duplicate ID.</div>
+  <span id="duplicateId">This span has the same ID as the div above.</span>
+
+  <h3>Headings Section</h3>
+  <!-- Missing H1 -->
+  <h2>Subheading without an H1</h2>
 
 </body>
 </html>
