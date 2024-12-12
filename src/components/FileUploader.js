@@ -18,7 +18,8 @@ function FileUploader({
 
     try {
       const { data } = await axios.post(
-        "http://localhost:5000/upload",
+        //"http://localhost:5000/upload",
+        "https://accessibility-checker-app.onrender.com/upload",
         formData
       );
       onAnalysisUpdate(data);
