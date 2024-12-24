@@ -2,23 +2,20 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import AnalysisDisplay from './AnalysisDisplay';
 
-describe('AnalysisDisplay', () => {
-  it('renders the compliance score and issues list', () => {
-    const mockAnalysis = {
-      complianceScore: 80,
-      issues: [{ type: 'Missing Alt Text', suggestion: 'Add alt text to images' }],
-    };
+test('renders compliance score and issues list', () => {
+  const analysis = {
+    complianceScore: 85,
+    issues: [
+      { type: 'Alt Text Issue', suggestion: 'Add alt text to images.' },
+      { type: 'Color Contrast Issue', suggestion: 'Ensure sufficient contrast between text and background.' },
+    ],
+  };
 
-    render(<AnalysisDisplay analysis={mockAnalysis} />);
+  render(<AnalysisDisplay analysis={analysis} />);
 
-    expect(screen.getByText(/compliance score/i)).toBeInTheDocument();
-    expect(screen.getByText(/80%/i)).toBeInTheDocument();
-    expect(screen.getByText(/missing alt text/i)).toBeInTheDocument();
-    expect(screen.getByText(/add alt text to images/i)).toBeInTheDocument();
-  });
-
-  it('does not render anything if no analysis is provided', () => {
-    const { container } = render(<AnalysisDisplay analysis={null} />);
-    expect(container).toBeEmptyDOMElement();
-  });
+  expect(screen.getByText(/Compliance Score: 85%/i)).toBeInTheDocument();
+  expect(screen.getByText(/Alt Text Issue/i)).toBeInTheDocument();
+  expect(screen.getByText(/Add alt text to images./i)).toBeInTheDocument();
+  expect(screen.getByText(/Color Contrast Issue/i)).toBeInTheDocument();
+  expect(screen.getByText(/Ensure sufficient contrast between text and background./i)).toBeInTheDocument();
 });

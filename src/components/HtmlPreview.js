@@ -1,34 +1,57 @@
 import React from 'react';
 
 function HtmlPreview({ htmlContent, analysis }) {
+  // const highlightIssues = () => {
+  //   if (!htmlContent || !analysis) return null;
+
+  //   const parser = new DOMParser();
+  //   const doc = parser.parseFromString(htmlContent, 'text/html');
+
+  //   analysis.issues.forEach((issue) => {
+  //     if (!issue.element) return; // Skip if the element selector is not defined
+
+  //     try {
+  //       const tempElement = document.createElement('div');
+  //       tempElement.innerHTML = issue.element;
+
+  //       // Use a safer way to find the element by its tag name and attributes
+  //       const elementToHighlight = doc.querySelector(tempElement.firstElementChild?.tagName);
+
+  //       if (elementToHighlight) {
+  //         elementToHighlight.classList.add('highlight');
+  //       } else {
+  //         console.warn(`Element not found for issue: ${issue.element}`);
+  //       }
+  //     } catch (error) {
+  //       console.error(`Error processing issue element: ${issue.element}`, error);
+  //     }
+  //   });
+
+  //   return { __html: doc.body.innerHTML };
+  // };
+
   const highlightIssues = () => {
     if (!htmlContent || !analysis) return null;
-
+  
     const parser = new DOMParser();
     const doc = parser.parseFromString(htmlContent, 'text/html');
-
+  
     analysis.issues.forEach((issue) => {
-      if (!issue.element) return; // Skip if the element selector is not defined
-
       try {
-        const tempElement = document.createElement('div');
-        tempElement.innerHTML = issue.element;
-
-        // Use a safer way to find the element by its tag name and attributes
-        const elementToHighlight = doc.querySelector(tempElement.firstElementChild?.tagName);
-
-        if (elementToHighlight) {
-          elementToHighlight.classList.add('highlight');
-        } else {
-          console.warn(`Element not found for issue: ${issue.element}`);
-        }
+        const selector = issue.selector; // Assume issue provides a valid CSS selector.
+        const elements = doc.querySelectorAll(selector);
+  
+        elements.forEach((el) => {
+          el.classList.add('highlight');
+        });
       } catch (error) {
-        console.error(`Error processing issue element: ${issue.element}`, error);
+        console.error(`Error applying highlight for selector: ${issue.selector}`, error);
       }
     });
-
+  
     return { __html: doc.body.innerHTML };
   };
+  
 
   if (!htmlContent) return null;
 
